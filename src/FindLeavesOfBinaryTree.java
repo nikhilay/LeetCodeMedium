@@ -1,6 +1,6 @@
 /**
  * Created by Nikhil on 10/24/16.
- *
+ */
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,6 +41,7 @@ public class FindLeavesOfBinaryTree {
 
     public List<List<Integer>> findLeaves(TreeNode root) {
         List<List<Integer>> result = new LinkedList<>();
+        if(root==null)return result;
         findLeavesAndRemove(result, root);
         return result;
     }
