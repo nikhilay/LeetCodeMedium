@@ -16,7 +16,7 @@ public class WiggleSort {
     public void wiggleSortEfficient(int[] nums) {
         for (int i = 1; i < nums.length; i++) {
             int a =nums[i-1];
-            if((a>nums[i])== ((i%2)==1)){
+            if((a>nums[i])==((i%2)==1)){
                 nums[i-1] = nums[i];
                 nums[i] = a;
             }
@@ -28,7 +28,6 @@ public class WiggleSort {
 
 
     }
-
 
     //O(NlogN) way --peaks and valleys from CTCI
     public void wiggleSort(int[] nums) {

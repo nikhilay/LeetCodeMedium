@@ -31,7 +31,7 @@ public class CountNumberOfUniqueTerms {
             memo[i] = memo[i-1] * currentNumber;
             currentNumber = currentNumber > 0 ? --currentNumber : 0;
             count+=memo[i];
-        }n
+        }
         return count;
     }
 
