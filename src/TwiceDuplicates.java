@@ -20,7 +20,7 @@ public class TwiceDuplicates {
         for (int i = 0; i < arr.length; i++) {
             int n = arr[arr[i]-1];
             if(n<0){
-                System.out.println(arr[arr[i]-1]*-1T );
+                System.out.println(arr[arr[i]-1]*-1 );
             }
             arr[arr[i]-1] = -arr[arr[i]-1];
         }
