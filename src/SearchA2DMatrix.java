@@ -28,7 +28,7 @@ public class SearchA2DMatrix {
             int mid_Value = matrix[mid / colLen][mid % colLen];
             if (mid_Value == target) {
                 return true;
-            } else if (S) {
+            } else if (target > mid_Value ) {
                 start = mid + 1;
             } else {
                 end = mid - 1;
