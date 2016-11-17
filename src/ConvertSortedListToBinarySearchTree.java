@@ -13,7 +13,7 @@ public class ConvertSortedListToBinarySearchTree {
             val = x;
             next = null;
         }
-    }L
+    }
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) return null;
         return recursion(head, null);
