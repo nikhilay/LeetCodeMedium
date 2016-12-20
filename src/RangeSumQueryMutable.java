@@ -59,7 +59,7 @@ public class RangeSumQueryMutable {
     private void updateSegmentTree(SegmentTreeNode node, int pos, int value) {
         if (node.start == pos && node.end == pos) {
             node.sum = value;
-            return;SM
+            return;
         }
         int mid = node.start + (node.end - node.start) / 2;
 
