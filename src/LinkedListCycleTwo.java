@@ -10,6 +10,10 @@ import java.util.HashSet;
  * Follow up:
  * Can you solve it without using extra space?
  */
+
+/**
+ * Inspired from https://discuss.leetcode.com/topic/19367/java-o-1-space-solution-with-detailed-explanation
+ */
 public class LinkedListCycleTwo {
     class ListNode {
         int val;

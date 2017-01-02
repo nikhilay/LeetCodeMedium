@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by Nikhil on 11/27/16 for Bookings.com test
  */
@@ -19,5 +18,8 @@ public class DeltaEncoding {
             System.out.print(i+" ");
         }
     }
+
+
+
 
 }

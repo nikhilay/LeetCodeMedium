@@ -10,6 +10,10 @@
  * Given 1->4->3->2->5->2 and x = 3,
  * return 1->2->2->4->3->5.
  */
+
+/**
+ * Inspired from https://discuss.leetcode.com/topic/7005/very-concise-one-pass-solution/3
+ */
 public class PartitionList {
     class ListNode {
         int val;

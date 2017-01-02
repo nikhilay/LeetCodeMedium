@@ -24,7 +24,7 @@ public class BestTimeToBuyandSellStockwithCoolDown {
      * you have 0 stock and you buy stock i
      * you have 0 stock and you do nothing
      */
-
+//https://discuss.leetcode.com/topic/31015/very-easy-to-understand-one-pass-o-n-solution-with-no-extra-space
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length < 2) return 0;
         int has0_Donothing = 0;

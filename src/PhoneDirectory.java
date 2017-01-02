@@ -19,8 +19,8 @@ public class PhoneDirectory {
      */
     private HashSet<Integer> usedNumbers = new HashSet<>();
     private Stack<Integer> releasedNumbers = new Stack<>();
-    int start = 0;
-    int end;
+    private int start = 0;
+    private int end;
 
     public PhoneDirectory(int maxNumbers) {
         this.end = maxNumbers;

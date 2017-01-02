@@ -35,7 +35,7 @@ public class MinimumNumberofArrowstoBurstBalloons {
         Node[] input = new Node[points.length];
         for (int i = 0; i < points.length; i++) {
             input[i] = new Node(points[i][0], points[i][1]);
-        }N
+        }
         Arrays.sort(input, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {

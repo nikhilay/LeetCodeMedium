@@ -6,11 +6,11 @@
  * Given a binary tree, flatten it to a linked list in-place.
  * For example,
  * Given
- * 1
+ *  1
  * / \
- * 2   5
- * / \   \
- * 3   4   6
+ * 2  5
+ * / \  \
+ * 3  4  6
  * The flattened tree should look like:
  * 1
  * \

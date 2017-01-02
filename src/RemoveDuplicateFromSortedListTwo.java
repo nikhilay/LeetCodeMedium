@@ -20,7 +20,7 @@ public class RemoveDuplicateFromSortedListTwo {
             val = x;
         }
     }
-    
+
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode list = new ListNode(0);

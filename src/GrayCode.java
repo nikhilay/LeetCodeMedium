@@ -4,7 +4,6 @@
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * The gray code is a binary numeral system where two successive values differ in only one bit.
@@ -22,6 +21,8 @@ import java.util.Stack;
  * Subscribe to see which companies asked this questionÒ
  */
 
+//Solution
+//https://discuss.leetcode.com/topic/8557/an-accepted-three-line-solution-in-java/2
 public class GrayCode {
     public List<Integer> grayCode(int n) {
         List<Integer> result = new LinkedList<>();

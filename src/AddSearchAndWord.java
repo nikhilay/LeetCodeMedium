@@ -17,6 +17,10 @@
  * search(".ad") -> true
  * search("b..") -> true
  */
+
+/**
+ * Inspired from https://discuss.leetcode.com/topic/14030/my-simple-and-clean-java-code/2
+ */
 public class AddSearchAndWord {
 
     class TrieNode {

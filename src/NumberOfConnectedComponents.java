@@ -19,10 +19,6 @@ import static javax.swing.UIManager.get;
  * Given n = 5 and edges = [[0, 1], [1, 2], [3, 4]], return 2.
  */
 public class NumberOfConnectedComponents {
-    public static void main(String[] args) {
-        int[][] input = { {0,1},{1,2},{3,4}};
-        new NumberOfConnectedComponents().countComponents(5,input);
-    }
     public int countComponents(int n, int[][] edges) {
         if (n <= 1) return n;
         HashMap<Integer, ArrayList<Integer>> hmap = new HashMap<>();

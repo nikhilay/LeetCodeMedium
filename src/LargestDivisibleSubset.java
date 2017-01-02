@@ -47,7 +47,7 @@ public class LargestDivisibleSubset {
 
             }
         }
-        
+
         while(index!=-1){
 
             result.add(nums[index]);

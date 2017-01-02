@@ -47,22 +47,15 @@ public class FindLeavesOfBinaryTree {
     }
 
     private int findLeavesAndRemove(List<List<Integer>> result, TreeNode root) {
-        if (root == null) {
-            return -1;
-        }
-        if (root.left == null && root.right == null) {
-            result.get(0).add(root.val);
-            return 1;
-        }
-
+        if (root == null) return -1;
         int leftResult = findLeavesAndRemove(result, root.left);
         int rightResult = findLeavesAndRemove(result, root.right);
 
-        int max = Math.max(leftResult, rightResult);
+        int level =1+ Math.max(leftResult, rightResult);
+        if(result.size()<level+1) result.add(new LinkedList<Integer>());
         root.left = null;
         root.right = null;
-
-        result.get(max).add(root.val);
-        return max + 1;
+        result.get(level).add(root.val);
+        return level;
     }
 }

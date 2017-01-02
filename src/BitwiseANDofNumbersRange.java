@@ -8,7 +8,7 @@
  */
 
 /**
- * Inspired from https://discuss.leetcode.com/topic/12133/bit-operation-solution-java/7 
+ * Inspired from https://discuss.leetcode.com/topic/12133/bit-operation-solution-java/7
  */
 public class BitwiseANDofNumbersRange {
     public int rangeBitwiseAnd(int m, int n) {

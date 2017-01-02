@@ -29,6 +29,10 @@ public class GuessNumberHigherorLowerII {
      * then we get DP([i~j]) = min{xi, ... ,xj}
      * --> // this min makes sure that you are minimizing your cost.
      */
+
+    /**
+     * Inspired from https://discuss.leetcode.com/topic/51353/simple-dp-solution-with-explanation
+     */
     public int getMoneyAmount(int n) {
         if (n == 1) return 0;
         int[][] memo = new int[n + 1][n + 1];
