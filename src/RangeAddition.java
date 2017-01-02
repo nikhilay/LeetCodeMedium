@@ -31,7 +31,7 @@ public class RangeAddition {
             result[start] += increment;
 
             if (end < length - 1) {
-                result[end] -= increment;
+                result[end+1] -= increment;
             }
         }
         int sum = 0;

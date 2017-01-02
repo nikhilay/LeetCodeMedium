@@ -22,7 +22,8 @@ public class PlusOneLinkedList {
         if (head == null) return head;
         ListNode helper = new ListNode(0);
         helper.next = head;
-        recursivleyAdd(head);
+        int carry = recursivleyAdd(head);
+        helper.val= carry;
         return helper.val == 0 ? helper.next : helper;
     }
 

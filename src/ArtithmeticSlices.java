@@ -20,80 +20,22 @@ import java.util.InputMismatchException;
  * A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this means that P + 1 < Q.
  * The function should return the number of arithmetic slices in the array A.
  */
+
+/**
+ * Inspired from
+ * https://discuss.leetcode.com/topic/69907/solution-with-explanation-o-n-memory-to-o-1/2
+ */
 public class ArtithmeticSlices {
-    public static void main(String[] args) {
-        int[] input = {1, 2, 3, 8, 9, 10};
-        new ArtithmeticSlices().numberOfArithmeticSlicesEfficient(input);
-    }
-
-    //efficientSolution
-    public int numberOfArithmeticSlicesEfficient(int[] a) {
-        if (a == null || a.length < 3) return 0;
-        int result = 0;
-        int numbers = 1;
-        for (int i = 2; i < a.length; i++) {
-            if (a[i] - a[i - 1] == a[i - 1] - a[i - 2]) {
-                numbers++;
-            } else {
-                result += getNoOfWaysEfficient(numbers + 1);
-                numbers = 1;
+    public int numberOfArithmeticSlices(int[] A) {
+        if (A == null || A.length < 3) return 0;
+        int[] dp = new int[A.length];
+        int sum = 0;
+        for (int i = 2; i < A.length; i++) {
+            if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) {
+                dp[i] = dp[i - 1] + 1;
             }
-
-
+            sum += dp[i];
         }
-        result += getNoOfWaysEfficient(numbers + 1);
-        return result;
-
-    }
-
-    private int getNoOfWaysEfficient(int numbers) {
-        ;
-        int threshold = 3;
-        if (numbers >= threshold) {
-            return (numbers - 1) * (numbers - 2) / 2;
-        }
-        return 0;
-    }
-
-    public int numberOfArithmeticSlices(int[] a) {
-        if (a.length < 3) return 0;
-        int[] differenceArray = new int[a.length - 1];
-
-        for (int i = 1; i < a.length; i++) {
-            differenceArray[i - 1] = a[i] - a[i - 1];
-        }
-
-        int result = 0;
-        int numbers = 1;
-        for (int i = 1; i < differenceArray.length; i++) {
-            if (differenceArray[i - 1] == differenceArray[i]) {
-                numbers++;
-                if (i + 1 == differenceArray.length) {
-                    result += getNoOfWays(numbers + 1);
-                }
-            } else {
-                result += getNoOfWays(numbers + 1);
-                numbers = 1;
-            }
-
-
-        }
-        System.out.println(result);
-        return result;
-    }
-
-    private int getNoOfWays(int numbers) {
-        int result = 0;
-        int threshold = 3;
-        if (numbers >= threshold) {
-            int j = threshold;
-            while (j <= numbers) {
-                for (int index = 0; (index + j - 1) < numbers; index++) {
-                    result++;
-                }
-                j++;
-            }
-        }
-        return result;
+        return sum;
     }
 }
