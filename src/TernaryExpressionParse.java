@@ -36,48 +36,22 @@ import static javafx.scene.input.KeyCode.T;
 
 
 public class TernaryExpressionParse {
-    private Stack<Character> stack;
-
-    public static void main(String[] args) {
-        System.out.println(new TernaryExpressionParse().parseTernary("T?5:3"));
-    }
-
     public String parseTernary(String expression) {
-        if (expression.length() == 0) return "";
-        stack = new Stack();
-        return recursivelyParseTernary(expression);
-    }
-
-    private String recursivelyParseTernary(String expression) {
-        char condition = expression.charAt(0);
-        int end = 0;
-        for (int i = 2; i < expression.length(); i++) {
+        if (expression == null || expression.length() == 0) return "";
+        Stack<Character> stack = new Stack<>();
+        for (int i = expression.length() - 1; i >= 0; i--) {
             char c = expression.charAt(i);
-            if (c == '?') {
-                stack.push(c);
-            } else if (c == ':') {
-                if (stack.isEmpty()) {
-                    end = i;
-                    break;
-                }
+            if (!stack.isEmpty() && stack.peek() == '?') {
                 stack.pop();
-
+                char left = stack.pop();
+                stack.pop();
+                char right = stack.pop();
+                stack.push(c == 'T' ? left : right);
+            } else if (c != '(' && c != ')') {
+                stack.push(c);
             }
-
         }
-        String left = expression.substring(2, end);
-        String right = expression.substring(end + 1);
-        if (left.length() > 1) {
-            left = recursivelyParseTernary(left);
-        }
-        if (right.length() > 1) {
-            right = recursivelyParseTernary(right);
-        }
-        if (condition == 'T') {
-            return left;
-        } else {
-            return right;
-        }
+        return stack.peek().toString();
     }
 
 }
