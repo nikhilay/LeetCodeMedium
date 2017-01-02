@@ -6,30 +6,16 @@
 
 public class WiggleSort {
 
-    public int wiggleMaxLength(int[] nums) {
-        if (nums == null || nums.length == 0) return 0;
-        int k = 0;
-        while (k < nums.length - 1 && nums[k + 1] == nums[k]) {
-            k++;
-        }
-        if (k == nums.length - 1) return 1;
-        int result = 2;
-        boolean small = nums[k] < nums[k + 1];
-        for (int i = k + 1; i < nums.length - 1; i++) {
+    public void wiggleSort(int[] nums) {
+        if (nums == null || nums.length == 0) return;
+        for (int i = 1; i < nums.length; i++) {
+            if ((i % 2 == 1 && nums[i - 1] > nums[i]) || (i % 2 == 0 && nums[i] > nums[i - 1])) {
+                int temp = nums[i - 1];
+                nums[i - 1] = nums[i];
+                nums[i] = temp;
 
-            if (small && nums[i + 1] < nums[i]) {
-                nums[result] = nums[i + 1];
-                result++;
-                small = !small;
-            } else if (!small && nums[i + 1] > nums[i]) {
-                nums[result] = nums[i + 1];
-                result++;
-                small = !small;
             }
-
         }
-
-        return result;
     }
 
 }
