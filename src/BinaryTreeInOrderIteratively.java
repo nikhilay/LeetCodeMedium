@@ -29,22 +29,16 @@ public class BinaryTreeInOrderIteratively {
         List<Integer> list = new LinkedList<>();
         if (root == null) return list;
         Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            TreeNode temp = stack.peek();
-            if (temp.left != null) {
-                stack.push(temp.left);
-                temp.left = null;
-            } else {
-                list.add(temp.val);
-                stack.pop();
-                if (temp.right != null) {
-                    stack.push(temp.right);
-                }
+        TreeNode curr = root;
+        while (curr!=null || !stack.isEmpty()) {
+            while (curr != null) {
+                stack.push(curr);
+                curr= curr.left;
             }
-
+            curr = stack.pop();
+            list.add(curr.val);
+            curr = curr.right;
         }
         return list;
-
     }
 }

@@ -13,54 +13,24 @@ import java.util.List;
  */
 
 public class GeneralizedAbbreviation {
-
-    public static void main(String[] args) {
-        new GeneralizedAbbreviation().generateAbbreviations("word");
+    public List<String> generateAbbreviations(String word) {
+        List<String> res = new LinkedList<>();
+        if (word == null) return res;
+        backtracking(word, res, 0, "", 0);
+        return res;
     }
 
-    public void generateAbbreviations(String word) {
-        List<String> result = new LinkedList<>();
-        if (word == null || word.length() == 0) return;
-        int n = (int) Math.pow(2, word.length());
-        result.add(word);
-        StringBuilder sb;
-        for (int i = 15; i < n; i++) {
-            char[] arr = word.toCharArray();
-            int k = i;
-            int count = word.length() - 1;
-            while (k != 0) {
-                if ((k & 1) == 1) {
-                    arr[count] = '1';
-                }
-                count--;
-                k >>= 1;
-            }
-            sb = new StringBuilder();
-            int cnt = 1;
-            int j;
-            for (j = 1; j < arr.length; j++) {
-                if (arr[j] == '1' && arr[j - 1] == '1') {
-                    cnt++;
-                    j =j+1;
-                } else {
-                    if (cnt >= 2) {
-                        sb.append(cnt);
-                    }
-                    sb.append(arr[j - 1]);
-                    cnt = 1;
-                }
-            }
-            if (cnt >= 2 && j >= arr.length) {
-                sb.append(cnt);
-            } else {
-                sb.append(arr[j - 1]);
-            }
-            result.add(sb.toString());
-        }
-        for (String s : result) {
-            System.out.print(s + ", ");
+    private void backtracking(String word, List<String> res, int pos, String curr, int count) {
+        if (pos == word.length()) {
+            if (count > 0) curr += count;
+            res.add(curr);
+        } else {
+            backtracking(word, res, pos + 1, curr, count + 1);
+            backtracking(word, res, pos + 1, curr + (count > 0 ? count : "") + word.charAt(pos), 0);
         }
 
     }
+
+
 }
 

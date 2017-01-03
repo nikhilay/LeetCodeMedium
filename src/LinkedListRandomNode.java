@@ -32,34 +32,24 @@ public class LinkedListRandomNode {
     }
 
     private ListNode head;
-    private int length;
-    private Random rn = new Random();
-
-    /**
-     * @param head The linked list's head.
-     *             Note that the head is guaranteed to be not null, so it contains at least one node.
-     */
+    private Random rn;
+    /** @param head The linked list's head.
+    Note that the head is guaranteed to be not null, so it contains at least one node. */
     public LinkedListRandomNode(ListNode head) {
         this.head = head;
-        ListNode helper = head;
-        while (helper != null) {
-            helper = helper.next;
-            length++;
-        }
+        rn = new Random();
     }
 
-    /**
-     * Returns a random node's value.
-     */
+    /** Returns a random node's value. */
     public int getRandom() {
-        ListNode helper = head;
-        int n = rn.nextInt(length);
-        while (n != 0) {
-            helper = helper.next;
-            n--;
+        ListNode c = head;
+        int r = c.val;
+        for(int i=1;c.next!=null;i++){
+            c = c.next;
+            if(rn.nextInt(i+1)==i) r = c.val;
 
         }
-        return helper.val;
+        return r;
     }
 /**
  * Your Solution object will be instantiated and called as such:

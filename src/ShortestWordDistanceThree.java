@@ -13,13 +13,6 @@
  * You may assume word1 and word2 are both in the list.Understand the problem:
  */
 public class ShortestWordDistanceThree {
-    public static void main(String[] args) {
-        String[] input = {"practice", "makes", "perfect", "coding", "makes"};
-        String word1 = "makes";
-        String word2 = "makes";
-        System.out.println(new ShortestWordDistanceThree().shortestWordDistance(input, word1, word2));
-    }
-
     public int shortestWordDistance(String[] words, String word1, String word2) {
         if (words == null || words.length == 0) {
             return -1;
@@ -38,6 +31,7 @@ public class ShortestWordDistanceThree {
                 ind2 = i;
 
             }
+            System.out.println(ind1 +"  "+ind2);
             min = Math.min(min, Math.abs(ind1 - ind2));
         }
         return (int)min;

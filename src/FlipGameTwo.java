@@ -23,12 +23,12 @@ public class FlipGameTwo {
                 arr[i - 1] = '-';
                 arr[i] = '-';
 
-                boolean win = canWinHelper(arr);
+                boolean win = !canWinHelper(arr);
 
                 arr[i - 1] = '+';
                 arr[i] = '+';
 
-                if(!win){
+                if(win){
                     return true;
                 }
 

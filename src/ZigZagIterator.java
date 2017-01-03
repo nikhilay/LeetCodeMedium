@@ -42,38 +42,16 @@ public class ZigZagIterator {
         currentIndex = 0;
         this.input = input;
     }
-
-
-    public static void main(String[] args) {
-        int[] input1 = {1, 2};
-        int[] input2 = {3, 4, 5, 6};
-        int[] input3 = {9, 10, 11};
-        int[] input4 = {5, 8, 13, 15, 20};
-        LinkedList<int[]> input = new LinkedList<>();
-        input.add(input1);
-        input.add(input2);
-        input.add(input3);
-        input.add(input4);
-        ZigZagIterator obj = new ZigZagIterator(input);
-        for (int i = 1; i <= 15; i++) {
-            obj.next();
-        }
-
-
-    }
-
     public void next() {
 
         while (startIndexArray[currentIndex] == endIndexArray[currentIndex]) {
             currentIndex++;
             currentIndex = currentIndex % input.size();
             if (hasNext() == false) {
-                System.out.println("\nNo more elements");
                 return;
             }
 
         }
-        System.out.print(input.get(currentIndex)[startIndexArray[currentIndex]] + ", ");
         startIndexArray[currentIndex]++;
         if (startIndexArray[currentIndex] == endIndexArray[currentIndex]) {
             check[currentIndex] = false;
