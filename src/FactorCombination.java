@@ -19,34 +19,25 @@ import java.util.List;
 //Similar Solution
 //  https://discuss.leetcode.com/topic/21082/my-recursive-dfs-java-solution
 public class FactorCombination {
-    public static void main(String[] args) {
-        new FactorCombination().getFactors(10);
-    }
-
     public List<List<Integer>> getFactors(int n) {
         List<List<Integer>> result = new LinkedList<>();
-        backtracker(result, new LinkedList<Integer>(), n, 2);
-        for (List<Integer> list : result) {
-            for (int i : list) {
-                System.out.print(i + ", ");
-            }
-            System.out.print("\n");
-        }
+        backtracker(result, new LinkedList<Integer>(), n,2);
         return result;
     }
 
-    private void backtracker(List<List<Integer>> result, List<Integer> memo, int n, int start) {
+    private void backtracker(List<List<Integer>> result, List<Integer> memo, int n,int start) {
         if (n == 0) return;
-        if (!memo.isEmpty()) {
-            result.add(new LinkedList<>(memo));
+        if (n<=1) {
+            if(memo.size()>1){
+                result.add(new LinkedList<>(memo));
+            }
+            return;
         }
         for (int i = start; i <= n; i++) {
             if ((n % i) == 0) {
-                List<Integer> tempList = new LinkedList<Integer>();
-                tempList.addAll(memo);
-                tempList.add(i);
-                backtracker(result, tempList, n / i, i);
-                tempList.remove(tempList.remove(tempList.size() - 1));
+                memo.add(i);
+                backtracker(result, memo, n / i,i);
+                memo.remove(memo.size() - 1);
             }
         }
     }
