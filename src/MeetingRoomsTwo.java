@@ -11,51 +11,36 @@ import java.util.Comparator;
  */
 public class MeetingRoomsTwo {
     static class Interval {
-        int startTime;
-        int endTime;
+        int start;
+        int end;
 
-        Interval(int startTime, int endTime) {
-            this.startTime = startTime;
-            this.endTime = endTime;
+        Interval(int start, int end) {
+            this.start = start;
+            this.end = end;
         }
     }
 
-    public static void main(String[] args) {
-        Interval i = new Interval(1,2);
-        Interval j = new Interval(2,3);
-        Interval k = new Interval(3,4);
-        Interval[] input = {j,i,k,i};
-        new MeetingRoomsTwo().minMeetingRooms(input);
-    }
     public int minMeetingRooms(Interval[] intervals) {
-        if (intervals == null || intervals.length == 0) return 0;
-        Arrays.sort(intervals, new Comparator<Interval>() {
-            @Override
-            public int compare(Interval o1, Interval o2) {
-                if (o1.startTime - o2.startTime > 0) {
-                    return 1;
-                } else if (o1.startTime - o2.startTime < 0) {
-                    return -1;
-                } else {
-                    if (o1.endTime - o2.endTime > 0) {
-                        return 1;
-                    } else if (o1.endTime - o2.endTime < 0) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-                }
-            }
-        });
-
-        int count = 1;
-
-        for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i].startTime < intervals[i - 1].endTime) {
-                count++;
-            }
+        if (intervals == null || intervals.length < 2) return intervals.length;
+        int[] start = new int[intervals.length];
+        int[] end = new int[intervals.length];
+        for (int i = 0; i < intervals.length; i++) {
+            start[i] = intervals[i].start;
+            end[i] = intervals[i].end;
         }
-        System.out.println(count);
-        return count;
+        Arrays.sort(start);
+        Arrays.sort(end);
+        int numRooms = 0;
+        int endItr = 0;
+        for (int i = 0; i < start.length; i++) {
+            if (start[i] < end[endItr]) {
+                numRooms++;
+            } else {
+                endItr++;
+            }
+
+        }
+        return numRooms;
+
     }
 }
