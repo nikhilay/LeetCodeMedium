@@ -28,7 +28,7 @@ public class GrayCode {
         List<Integer> result = new LinkedList<>();
         for (int i = 0; i < Math.pow(2, n); i++) {
 
-            result.add((i) ^ i >> 1);
+            result.add(i ^ (i >> 1));
         }
         return result;
     }

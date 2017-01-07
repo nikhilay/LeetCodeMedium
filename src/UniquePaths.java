@@ -14,33 +14,18 @@ public class UniquePaths {
     }
 
     public int uniquePaths(int m, int n) {
-        int[][] memo = new int[m][n];
-        return backtracker(m - 1, n - 1, memo);
-    }
-
-    private int backtracker(int row, int col, int[][] memo) {
-        if (row == 0 && col == 0) {
-            memo[row][col] = 1;
-            return 1;
+        Integer[][] map = new Integer[m][n];
+        for(int i = 0; i<m;i++){
+            map[i][0] = 1;
         }
-        if (row < 0 || col < 0) {
-            return -1;
+        for(int j= 0;j<n;j++){
+            map[0][j]=1;
         }
-        if (memo[row][col] < 0) {
-            return -1;
-        } else if (memo[row][col] > 0) {
-            return memo[row][col];
+        for(int i = 1;i<m;i++){
+            for(int j = 1;j<n;j++){
+                map[i][j] = map[i-1][j]+map[i][j-1];
+            }
         }
-        int upSide = backtracker(row - 1, col, memo);
-        int leftSide = backtracker(row, col - 1, memo);
-
-        if (upSide < 0 && leftSide < 0) {
-            memo[row][col] = -1;
-            return -1;
-        }
-        leftSide = leftSide > 0 ? leftSide : 0;
-        upSide = upSide > 0 ? upSide : 0;
-        memo[row][col] = leftSide + upSide;
-        return memo[row][col];
+        return map[m-1][n-1];
     }
 }
