@@ -12,9 +12,9 @@ import java.util.*;
  * Inspired from https://discuss.leetcode.com/topic/31115/using-hashmap-bfs-java-solutionB
  */
 public class BinaryTreeVerticalOrderTraversal {
-    public void verticalOrder(TreeNode root) {
+    public List<List<Integer>> verticalOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
-        if(root==null) return;
+        if(root==null) return res;
         HashMap<Integer,ArrayList<Integer>> hmap = new HashMap<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
@@ -28,11 +28,11 @@ public class BinaryTreeVerticalOrderTraversal {
                 hmap.put(w, new ArrayList<Integer>());
             }
             hmap.get(w).add(node.val);
-            if(root.left!=null){
+            if(node.left!=null){
                 queue.add(node.left);
                 weight.put(node.left,w-1);
             }
-            if(root.right!=null){
+            if(node.right!=null){
                 queue.add(node.right);
                 weight.put(node.right,w+1);
             }
@@ -41,5 +41,6 @@ public class BinaryTreeVerticalOrderTraversal {
      while(hmap.containsKey(min)){
          res.add(hmap.get(min++));
      }
+     return res;
     }
 }
