@@ -24,42 +24,33 @@ import java.util.*;
  * All possible pairs are returned from the sequence:
  * [1,3],[2,3]L
  */
+
+/**
+ * Inspired from
+ * https://discuss.leetcode.com/topic/50885/simple-java-o-klogk-solution-with-explanation
+ */
 public class FindKPairswithSmallestSums {
-    class Pairs {
-        int x;
-        int y;
-
-        Pairs(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
-        PriorityQueue<Pairs> priorityQueue = new PriorityQueue<Pairs>(k, new Comparator<Pairs>() {
+        PriorityQueue<int[]> priorityQueue = new PriorityQueue<int[]>(k, new Comparator<int[]>() {
             @Override
-            public int compare(Pairs o1, Pairs o2) {
-                return (o2.x+o2.y)-(o1.x+o1.y);
+            public int compare(int[] o1, int[] o2) {
+                return (o1[0] + o1[1]) - (o2[0] + o2[1]);
             }
 
         });
-        for (int row = 0; row < nums1.length; row++) {
-            for (int col = 0; col < nums2.length; col++) {
-                priorityQueue.add(new Pairs(nums1[row], nums2[col]));
-                if (priorityQueue.size() > k) {
-                    priorityQueue.poll();
-                }
-
-            }
-        }
         List<int[]> result = new ArrayList<>(k);
-        Iterator it = priorityQueue.iterator();
-        while (it.hasNext()) {
-            Pairs temp = (Pairs) it.next();
-            int[] point = {temp.x, temp.y};
-            result.add(0, point);
-        }
+        if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) return result;
+        for (int i = 0; i < nums1.length && i < k; i++) {
+            priorityQueue.offer(new int[]{nums1[i], nums2[0], 0});
 
+        }
+        while (k != 0 && !priorityQueue.isEmpty()) {
+            int[] curr = priorityQueue.poll();
+            result.add(new int[]{curr[0], curr[1]});
+            k--;
+            if (curr[2] == nums2.length - 1) continue;
+            priorityQueue.offer(new int[]{curr[0], nums2[curr[2] + 1], curr[2] + 1});
+        }
         return result;
     }
 }
