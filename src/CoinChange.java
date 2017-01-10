@@ -14,31 +14,25 @@
  * coins = [2], amount = 3
  * return -1.
  */
+
+/**
+ * Inspired from
+ * https://www.youtube.com/watch?annotation_id=annotation_2195265949&feature=iv&src_vid=Y0ZqKpToTic&v=NJuKJ8sasGk
+ */
 public class CoinChange {
     public int coinChange(int[] coins, int amount) {
         if (coins == null || coins.length == 0) return 0;
-        int[] memo = new int[amount];
-        return helper(coins, amount, memo);
-
-    }
-
-    private int helper(int[] coins, int amount, int[] memo) {
-        if (amount == 0) {
-            return 0;
-        } else if (amount < 0) {
-            return -1;
+        int[] memo = new int[amount+1];
+        for(int i=1;i<memo.length;i++){
+            memo[i]= Integer.MAX_VALUE-1;
         }
-        if(memo[amount-1]!=0) return memo[amount-1];
-        long min = Long.MAX_VALUE;
-        for (int i = 0; i < coins.length; i++) {
-            int coin = 1;
-            int remainingCoin = helper(coins, amount-coins[i],memo);
-            if (remainingCoin >= 0) {
-                coin += remainingCoin;
-                min = Math.min(coin, min);
+        for(int i=1;i<memo.length;i++ ){
+            for(int j=0;j<coins.length;j++){
+                if(i>=coins[j]) memo[i]= Math.min(memo[i],memo[i-coins[j]]+1);
             }
+
         }
-        memo[amount-1] = (min == Long.MAX_VALUE )? -1 : (int) min;
-        return memo[amount-1];
+        return memo[amount]==Integer.MAX_VALUE-1?-1:memo[amount];
+
     }
 }
